@@ -10,7 +10,7 @@ It has 2 types of backups:
   - origin: /usr/src/app/backup/src/incremental
   - destination: rclone(hoc) > backup/src
 - full: create a tar file from origin and sync to destination
-  - origin: /usr/src/app/backup/src
+  - origin: /usr/src/app/backup/src/full
   - destination: rclone(hoc) > backup/full
 
 ## Environment Variables

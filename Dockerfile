@@ -20,6 +20,7 @@ RUN mkdir -p log \
     && touch log/cron.log \
     && mkdir -p backup \
     && mkdir -p backup/src/incremental \
+    && mkdir -p backup/src/full \
     && mkdir -p backup/full \
     && chmod 744 -R scripts
 
