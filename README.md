@@ -1,44 +1,60 @@
-Ejemplo de .yml
+# Backups
 
-    backup:
-      image: maximilianoteruel/backups:latest
-      volumes:
-        - db_backup:/usr/src/app/backup/src/db
-        - media_afip_taxpayers:/usr/src/app/backup/src/media_afip_taxpayers
-        - backup_config:/root/.config
-        - backup_log:/usr/src/app/log
-        - backup_full:/usr/src/app/backup/full
+Rclone scheduled backups.
 
-Configurar Rclone:
+## Features
 
-- attach shell en el docker y seguir los siguientes pasos:
+It has 2 types of backups:
 
-```bash
-rclone config
-opcion n
-nombre del remote: hoc
-storage type: 13
-Enter
-Enter
-tipo de acceso: 1
-Enter
-Enter
-Enter
-Auto Config NO
-acceder al link y pegar el codigo de verificacion
-Enter
-Enter
-q
-```
+- incremental: sync data between origin and destination
+  - origin: /usr/src/app/backup/src/incremental
+  - destination: rclone(hoc) > backup/src
+- full: create a tar file from origin and sync to destination
+  - origin: /usr/src/app/backup/src
+  - destination: rclone(hoc) > backup/full
 
-Variables de Entorno:
+## Environment Variables
 
 ```bash
 - CRON_INCREMENTAL=0_3_*_*_*
 - CRON_FULL=30_3_15_*_*
 ```
 
-Va a realizar los siguientes backups:
+## Configure Rclone to GDrive
 
-- incremental: todos los dias a las 3am
-- full: todos los dias 15 a las 3:30am
+Attach shell at the docker container and follow the steps:
+
+```bash
+rclone config
+[option] n
+[name to use] hoc
+[storage type] 13
+Enter
+Enter
+[access type] 1
+Enter
+Enter
+Enter
+[Auto Config] NO
+[access to the link and paste the verification code]
+Enter
+Enter
+[option] q
+```
+
+## How to use
+
+Example .yml:
+
+```bash
+  backups:
+    image: maximilianoteruel/backups:latest
+    volumes:
+      - volume_1_incremental:/usr/src/app/backup/src/incremental/1
+      - volume_2_incremental:/usr/src/app/backup/src/incremental/2
+      - volume_3_full:/usr/src/app/backup/src/3
+      - volume_4_full:/usr/src/app/backup/src/4
+      - backups_config:/root/.config
+      - backups_log:/usr/src/app/log
+      - backups_full:/usr/src/app/backup/full
+```

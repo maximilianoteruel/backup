@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  backups:
+    image: maximilianoteruel/backups:dev
+    volumes:
+      - volume_1_incremental:/usr/src/app/backup/src/incremental/1
+      - volume_2_incremental:/usr/src/app/backup/src/incremental/2
+      - volume_3_full:/usr/src/app/backup/src/3
+      - volume_4_full:/usr/src/app/backup/src/4
+      - backups_config:/root/.config
+      - backups_log:/usr/src/app/log
+      - backups_full:/usr/src/app/backup/full
+
+volumes: 
+  volume_1_incremental:
+  volume_1_incremental:
+  volume_3_full:
+  volume_4_full:
+  backups_config:
+  backups_log:
+  backups_full:
