@@ -49,6 +49,9 @@ Example .yml:
 ```bash
   backups:
     image: maximilianoteruel/backups:latest
+    environment:
+      - CRON_INCREMENTAL=0_3_*_*_*
+      - CRON_FULL=30_3_15_*_*
     volumes:
       - volume_1_incremental:/usr/src/app/backup/src/incremental/1
       - volume_2_incremental:/usr/src/app/backup/src/incremental/2

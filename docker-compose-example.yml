@@ -2,6 +2,9 @@ version: "3.7"
 services:
   backups:
     image: maximilianoteruel/backups:dev
+    environment:
+      - CRON_INCREMENTAL=0_3_*_*_*
+      - CRON_FULL=30_3_15_*_*
     volumes:
       - volume_1_incremental:/usr/src/app/backup/src/incremental/1
       - volume_2_incremental:/usr/src/app/backup/src/incremental/2
@@ -11,9 +14,9 @@ services:
       - backups_log:/usr/src/app/log
       - backups_full:/usr/src/app/backup/full
 
-volumes: 
+volumes:
   volume_1_incremental:
-  volume_1_incremental:
+  volume_2_incremental:
   volume_3_full:
   volume_4_full:
   backups_config:
