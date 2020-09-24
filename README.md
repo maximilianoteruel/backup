@@ -54,9 +54,9 @@ Example .yml:
       - CRON_FULL=30_3_15_*_*
     volumes:
       - volume_1_incremental:/usr/src/app/backup/src/incremental/1
-      - volume_2_incremental:/usr/src/app/backup/src/incremental/2
-      - volume_3_full:/usr/src/app/backup/src/3
-      - volume_4_full:/usr/src/app/backup/src/4
+      - volume_2_incremental_full:/usr/src/app/backup/src/incremental/2
+      - volume_2_incremental_full:/usr/src/app/backup/src/full/2
+      - volume_3_full:/usr/src/app/backup/src/full/3
       - backups_config:/root/.config
       - backups_log:/usr/src/app/log
       - backups_full:/usr/src/app/backup/full
